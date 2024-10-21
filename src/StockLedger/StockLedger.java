@@ -12,7 +12,7 @@ public class StockLedger implements StockLedgerInterface {
         }
     }
     public double sell(String stockSymbol, int sharesSold, double pricePerShare){
-
+        if (contains(stockSymbol)){}
     }
     public boolean contains(String stockSymbol){
         boolean hasSymbol = false;
