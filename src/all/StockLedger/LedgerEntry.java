@@ -13,26 +13,37 @@ public class LedgerEntry {
         this.symbol = symbol;
     }
 
+    /**
+     * Gets stock symbol of ledger
+     * @return four letter stock symbol
+     */
     public String getSymbol(){
         return symbol;
     }
 
-    public void addPurchases(int shares, double price){
+    /**
+     * Adds a single StockPurchase object into ledger whenever a stock is bought
+     * @param price price of stock
+     */
+    public void addPurchase(double price){
         StockPurchase stock = new StockPurchase(symbol, price);
-        for(int i = 0; i < shares; i++){
-            purchases.addToFront(stock);
-        }
+        purchases.addToFront(stock);
     }
 
-    public double sellPurchases(int shares){
-        double sold = 0;
-        for(int i = 0; i < shares; i++){
-            StockPurchase stock = purchases.removeBack();
-            sold += stock.getCost();
-        }
-        return sold;
+    /**
+     * Removes StockPurchase object from the end of the ledger
+     * @return price of the removed stock
+     */
+    public double sellPurchase(){
+        StockPurchase stock = purchases.removeBack();
+        return stock.getCost();
     }
 
+    /**
+     * Amount of each stock, according to price, in String form
+     * @return String representation of ledger
+     */
+    //note: it is ordered like how they appear in the list, not first, second, etc. like in the example
     public String toString(){
         Iterator<StockPurchase> iterator = purchases.iterator();
         String ledgerShares = symbol + ":";
@@ -40,17 +51,19 @@ public class LedgerEntry {
         int shareAmount = 0;
         while(iterator.hasNext()){
             StockPurchase stock = iterator.next();
-            if(prevPrice == 0){
-                prevPrice = stock.getCost();
+            if(prevPrice == 0){ //if first value in list
+                prevPrice = stock.getCost(); //set new previous value
             }
+            //if there is a new share price, add amount of shares at prevPrice
             if(prevPrice != stock.getCost() && prevPrice != 0){
                 ledgerShares += " " + prevPrice + " (" + shareAmount + " shares)";
                 prevPrice = stock.getCost();
                 shareAmount = 1;
-            } else {
+            } else { //otherwise add to share amount
                 shareAmount++;
             }
         }
+        //add the last share price and the amount of it
         ledgerShares += " " + prevPrice + " (" + shareAmount + " shares)";
         return ledgerShares;
     }

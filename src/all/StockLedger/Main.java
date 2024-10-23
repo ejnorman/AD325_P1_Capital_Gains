@@ -3,6 +3,7 @@ package StockLedger;
 public class Main {
     public static void main(String[] args) {
         StockLedger stocks = new StockLedger();
+        //stocks appear in order as they are in the list, not in order they were added
         stocks.buy("AAPL", 20, 45.0);
         stocks.buy("AAPL", 20, 75.0);
         stocks.buy("MSFT", 20, 95.0);

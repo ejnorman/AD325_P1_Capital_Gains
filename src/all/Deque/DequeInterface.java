@@ -3,7 +3,7 @@ package Deque;
 import java.util.Iterator;
 
 public interface DequeInterface<T> extends Iterable<T>{
-    /** Adds a new entry to the front of back of this deque.
+    /** Adds a new entry to the front or back of this deque.
      * @param newEntry An object to be added.
      */
     public void addToFront(T newEntry);
@@ -27,7 +27,7 @@ public interface DequeInterface<T> extends Iterable<T>{
     public T getFront();
     public T getBack();
 
-    /* Removes all entries from this deque. */
+    /** Removes all entries from this deque. */
     public void clear();
 
     /** Creates iterators to iterate through deque.
