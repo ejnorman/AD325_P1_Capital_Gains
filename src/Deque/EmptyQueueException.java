@@ -1,6 +1,6 @@
 package Deque;
 
-public class EmptyQueueException extends Exception {
+public class EmptyQueueException extends RuntimeException {
     public EmptyQueueException() {
         super("Queue is empty");
     }

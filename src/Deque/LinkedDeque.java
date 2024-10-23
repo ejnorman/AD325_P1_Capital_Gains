@@ -3,7 +3,7 @@ package Deque;
 import java.util.EmptyStackException;
 import java.util.Iterator;
 
-public class LinkedDeque<T> implements Iterable<T> {
+public class LinkedDeque<T> implements DequeInterface<T> {
     private DLNode<T> head;
     private DLNode<T> tail;
 
@@ -31,7 +31,7 @@ public class LinkedDeque<T> implements Iterable<T> {
         }
     }
 
-    public T removeFront() throws EmptyQueueException {
+    public T removeFront()  {
         if(head == null){
             throw new EmptyQueueException();
         }
@@ -49,7 +49,7 @@ public class LinkedDeque<T> implements Iterable<T> {
         return temp.data;
     }
 
-    public T removeBack() throws EmptyQueueException {
+    public T removeBack() {
         if(tail == null){
             throw new EmptyQueueException();
         }
@@ -72,10 +72,16 @@ public class LinkedDeque<T> implements Iterable<T> {
     }
 
     public T getFront() {
+        if(isEmpty()){
+            throw new EmptyQueueException();
+        }
         return head.data;
     }
 
     public T getBack() {
+        if(isEmpty()){
+            throw new EmptyQueueException();
+        }
         return tail.data;
     }
 
